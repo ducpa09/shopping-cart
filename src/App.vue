@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/cart">Cart ({{countItemInCart}})</router-link>
+      <router-link to="/cart">Cart ({{ countItemInCart }})</router-link>
     </div>
     <b-container> <router-view /></b-container>
   </div>
@@ -31,10 +31,16 @@
 }
 </style>
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters("cart", ["countItemInCart"]),
-  }
+  },
+  methods: {
+    ...mapActions("cart", ["checkout", "getCartFromStorage"]),
+  },
+  created() {
+    this.getCartFromStorage();
+  },
 };
 </script>

@@ -15,9 +15,7 @@
         />
         {{ data.item.name }}
       </template>
-      <template #cell(price)="data">
-        {{ data.item.price }} $
-      </template>
+      <template #cell(price)="data"> {{ data.item.price }} $ </template>
       <template #cell(id)="data">
         {{ data.item.id }}
       </template>
@@ -35,6 +33,7 @@ export default {
         { key: "price", label: "Price" },
         { key: "size", label: "Size" },
         { key: "quantity", label: "Quantity" },
+        { key: "color", label: "Color" },
       ],
     };
   },
@@ -43,10 +42,8 @@ export default {
     ...mapGetters("cart", ["calculateTotal"]),
   },
   methods: {
-    ...mapActions("cart", ["checkout", "getCartFromStorage"]),
+    ...mapActions("cart", ["checkout"]),
   },
-  created() {
-    this.getCartFromStorage();
-  },
+  created() {},
 };
 </script>

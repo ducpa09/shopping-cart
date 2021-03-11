@@ -16,7 +16,12 @@ export default {
             image: payload.product.image
         }
         if (cartItem) {
-            commit('INCREASE_ITEM_QUATITY', cartItem)
+            if (cartItem.color !== payload.color ||
+                cartItem.size !== payload.size) {
+                commit('ADD_PRODUCT_TO_CART', product)
+            } else {
+                commit('INCREASE_ITEM_QUATITY', cartItem)
+            }
         } else {
             commit('ADD_PRODUCT_TO_CART', product)
         }
@@ -42,6 +47,8 @@ export default {
                 commit('SET_CHECKOUT_STATUS', 'Checkout fail')
             });
 
+    },
+    getCartDataFromStorage() {
 
     }
 }
